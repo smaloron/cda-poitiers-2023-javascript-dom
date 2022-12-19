@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+
+    <script>
+
+        function disableButton (target) {
+            target.setAttribute("disabled", "");
+        }
+        function enableButton (target) {
+            target.removeAttribute("disabled");
+        }
+
+        window.onload = function () {
+            console.log("chargement terminé");
+
+            const disableBt = document.getElementById("disableButton");
+            const buttonList = document.querySelectorAll("#buttons button");
+
+            disableBt.onclick = function () {
+                let action;
+                if (buttonList[0].hasAttribute("disabled")) {
+                    disableBt.innerText = "Désactiver";
+                    action = enableButton;
+                } else {
+                    disableBt.innerText = "Activer";
+                    action = disableButton;
+                }
+                for (item of buttonList) {
+                    action(item);
+                    //item.setAttribute("disabled", "");
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="disableButton">Désactiver</button>
+    <div id="buttons">
+        <button>bt 1</button>
+        <button>bt 2</button>
+        <button>bt 3</button>
+    </div>
+</body>
+
+</html>

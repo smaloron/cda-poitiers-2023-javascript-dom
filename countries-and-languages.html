@@ -10,6 +10,7 @@
 <body id="page">
 
     <h2>Les langues</h2>
+    <button id="sortButton">Trier</button>
     <ul id="languages">
         <li class="item">Français</li>
         <li class="item">Anglais</li>
@@ -17,6 +18,7 @@
     </ul>
 
     <h2>Les pays</h2>
+
     <ul id="countries">
         <li class="item">France</li>
         <li class="item">Royaume Uni</li>
@@ -33,7 +35,12 @@
         // Duplication de liste HTML
         document.body.innerHTML = duplicate("#countries") + document.body.innerHTML;
 
-        sortLanguageList();
+
+
+        const sortButton = document.getElementById("sortButton");
+        sortButton.onclick = function () {
+            sortLanguageList();
+        }
     </script>
 </body>
 
