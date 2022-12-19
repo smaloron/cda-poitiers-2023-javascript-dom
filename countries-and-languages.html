@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <script src="countries-and-languages.js"></script>
+</head>
+
+<body id="page">
+
+    <h2>Les langues</h2>
+    <ul id="languages">
+        <li class="item">Français</li>
+        <li class="item">Anglais</li>
+        <li class="item">Japonais</li>
+    </ul>
+
+    <h2>Les pays</h2>
+    <ul id="countries">
+        <li class="item">France</li>
+        <li class="item">Royaume Uni</li>
+        <li class="item">Japon</li>
+    </ul>
+
+    <script>
+        console.log(getCountryListAsArray());
+
+        emphasizeElementsStartingWith("Fr");
+
+        //nuke();
+
+        // Duplication de liste HTML
+        document.body.innerHTML = duplicate("#countries") + document.body.innerHTML;
+
+        sortLanguageList();
+    </script>
+</body>
+
+</html>
