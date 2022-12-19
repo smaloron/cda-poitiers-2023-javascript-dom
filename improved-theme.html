@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="themes/theme-standard.css" rel="stylesheet" id="themeLink">
+    <title>Themes</title>
+
+    <script>
+        window.onload = function () {
+            const $theme = document.getElementById("themeLink");
+            const $buttonList = document.getElementById("buttons");
+
+            function themeHandler (ev) {
+                const themeName = ev.target.getAttribute("data-theme")
+                $theme.setAttribute("href", `themes/theme-${themeName}.css`);
+
+                // Remise à zéro du style du bouton actif
+                for (b of $buttonList.children) {
+                    b.style.boxShadow = "none";
+                }
+                // Mise en exergue du bouton actif
+                ev.target.style.boxShadow = "0 0 5px yellow";
+            }
+
+            for (b of $buttonList.children) {
+                b.onclick = themeHandler;
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="buttons">
+        <button data-theme="standard">Thème standard</button>
+        <button data-theme="dark">Thème dark</button>
+        <button data-theme="light">Thème light</button>
+    </div>
+
+    <h1>Page à thème</h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est autem molestiae veniam ipsa ducimus consectetur id
+        saepe? Cumque, sit! Odit quas, recusandae ducimus commodi nam saepe deleniti repellendus consequatur? Numquam!
+    </p>
+
+</body>
+
+</html>
