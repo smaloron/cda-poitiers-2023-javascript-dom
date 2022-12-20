@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaceship</title>
+    <style>
+        #spaceship {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            const spaceship = {
+                x: 100,
+                y: 0,
+                rotation: 0,
+                target: document.getElementById("spaceship"),
+
+                show: function () {
+                    this.target.style.left = this.x + "px";
+                    this.target.style.top = this.y + "px";
+                    this.target.style.transform = "rotate(" + this.rotation + "deg)";
+                },
+
+                move: function (speed = 5) {
+                    let rad = this.degreeToRadiant(this.rotation);
+                    this.x += Math.cos(rad) * speed;
+                    this.y += Math.sin(rad) * speed;
+                },
+
+                degreeToRadiant: function (degree) {
+                    return degree * Math.PI / 180;
+                }
+
+
+            }
+
+            spaceship.show();
+
+            window.onkeydown = function (ev) {
+                //console.log(ev);
+
+                // Déplacement du vaisseau
+                if (ev.key == "ArrowRight") {
+                    spaceship.move();
+                }
+
+                // Rotation du vaisseau
+                if (ev.key == "ArrowUp") {
+                    spaceship.rotation += 5;
+                }
+
+                if (ev.key == "ArrowDown") {
+                    spaceship.rotation -= 5;
+                }
+
+                spaceship.show();
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <img src="img/spaceship.png" id="spaceship">
+
+</body>
+
+</html>
