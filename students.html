@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etudiants</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <script>
+        const studentList = [
+            { name: 'Olivia', skills: ['Java', 'Haskell'] },
+            { name: 'Kasper', skills: ['Ada', 'Objective C', 'Fortran'] }
+        ];
+
+        window.onload = function () {
+            let $tbody = document.querySelector("#studentTable tbody");
+            const rowTemplate = document.getElementById("template").cloneNode(true);
+            rowTemplate.removeAttribute("id");
+
+            const shadowTbody = document.createElement("tbody");
+            for (student of studentList) {
+                const row = rowTemplate.cloneNode(true);
+                console.log(row)
+                row.firstElementChild.innerText = student.name;
+                row.firstElementChild.nextElementSibling.innerText = student.skills.join(", ");
+                shadowTbody.appendChild(row);
+            }
+            document.querySelector("#studentTable").replaceChild(shadowTbody, $tbody);
+        }
+    </script>
+</head>
+
+<body>
+
+    <table class="table table-bordered table-striped" id="studentTable">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Compétences</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="template">
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>
