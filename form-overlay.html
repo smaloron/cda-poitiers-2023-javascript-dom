@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form overlay</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        #formContainer {
+            margin: 15px auto;
+            width: 40%;
+            border: 1px solid #777;
+            border-radius: 20px;
+            padding: 10px;
+            background-color: bisque;
+
+        }
+    </style>
+
+    <script>
+        // On attend le chargement du DOM pour exécuter notre code
+        window.onload = function () {
+
+            // ciblage des éléments
+            const $form = document.getElementById("formContainer");
+            const $btOpenForm = document.getElementById("openForm");
+
+            // Masquage du formulaire au démarrage
+            $form.style.display = "none";
+
+            // Ouverture du formulaire au clic sur le bouton openform
+            $btOpenForm.onclick = function (ev) {
+                ev.stopPropagation();
+                $form.style.display = "block";
+                console.log(this);
+            }
+
+            // On empêche la propagation de l'événement
+            // pour éviter qu'il ne soit capturé par l'objet Window
+            $form.onclick = function (ev) {
+                ev.stopPropagation();
+            }
+
+            // fermeture de la fenêtre du formulaire
+            // quand on clique n'importe où sur l'écran
+            window.onclick = function () {
+                $form.style.display = "none";
+            }
+
+            // Capture de l'événement onsubmit du formulaire
+            $form.querySelector("form").onsubmit = function (ev) {
+                // Empêche le comportement par défaut (soumission du formulaire et rechargement de la page)
+                ev.preventDefault();
+
+                // Récupération des données envoyée par le formulaire
+                const data = new FormData(this);
+                const jsonData = {}
+
+                for ([name, value] of data.entries()) {
+                    jsonData[name] = value;
+                }
+                console.log(jsonData);
+            }
+        }
+    </script>
+</head>
+
+<body class="container-md">
+
+    <button id="openForm">ouvrir le formulaire</button>
+
+    <div id="formContainer">
+        <form>
+            <div class="mb-2">
+                <label class="form-label">Login</label>
+                <input type="text" name="login" class="form-control">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Mot de passe</label>
+                <input type="password" name="pass" class="form-control">
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Valider
+            </button>
+        </form>
+    </div>
+
+</body>
+
+</html>
