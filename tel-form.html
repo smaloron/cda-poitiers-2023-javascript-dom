@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire tel</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        #template {
+            display: none;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            $btAddTel = document.getElementById("addNewTel");
+            $telephoneList = document.getElementById("telephoneList");
+
+            const template = document.getElementById("template").cloneNode(true);
+            template.removeAttribute("id");
+
+            $btAddTel.onclick = function () {
+                const newElement = template.cloneNode(true);
+                $telephoneList.appendChild(newElement);
+            }
+
+            $telephoneList.onclick = function (ev) {
+                if (ev.target.classList.contains("delete")) {
+                    ev.target.parentElement.parentElement.remove();
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="container-md">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-4 bg-secondary">
+            <h3>Téléphones</h3>
+            <button type="button" class="btn btn-success" id="addNewTel">
+                Ajouter un téléphone
+            </button>
+
+            <div id="telephoneList" class="p-4">
+                <div id="template" class="mb-3">
+                    <div class="d-flex">
+                        <input type="tel" class="form-control me-2">
+                        <button type="button" class="delete btn btn-danger">
+                            supprimer
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
