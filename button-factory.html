@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrique de bouton</title>
+    <script>
+        window.onload = function () {
+            const $bt = document.getElementById("bt");
+
+            function spawnButton () {
+                const newButton = document.createElement("button");
+                newButton.textContent = "nouveau bouton";
+                //newButton.addEventListener("click", spawnButton);
+                document.body.appendChild(newButton);
+            }
+
+            document.body.onclick = function (ev) {
+                if (ev.target.tagName == "BUTTON") {
+                    spawnButton();
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <button id="bt">cliquez ici pour créer un bouton</button>
+
+</body>
+
+</html>
